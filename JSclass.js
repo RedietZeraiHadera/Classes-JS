@@ -70,8 +70,14 @@ console.log(rental);
 /*3) Create an instance of the Car class or function constructor for a car in the
 inventory. Then, create an instance of the Rental class or function constructor for
 a rental involving the car you created. Finally, calculate the rental duration using
-the calculateRentalDuration method.
-Question2
+the calculateRentalDuration method.*/
+
+
+
+
+
+
+/*Question2
 You are building a simple quiz app that contains multiple-choice questions. Your task is
 to create two JavaScript classes: Question and Quiz. The Question class will represent
 individual questions, and the Quiz class will manage a collection of questions and the
@@ -82,8 +88,33 @@ user's progress.
 ● correctAnswer(string): The correct answer to the question.
 The Question class should also have a method called checkAnswer that takes a
 user's answer as a parameter and returns true if the answer is correct and false
-otherwise.
-2. Create a Quiz class with the following properties:
+otherwise.*/
+
+class Question{
+    constructor(text,options,correctAnswer){
+        this.text = text;
+        this.options = options;
+        this.correctAnswer = correctAnswer;
+    } 
+    checkAnswers(){
+      return userAnswer === this.correctAnswer;  
+    }
+}
+const question = new Question(
+    'Which country has the highest number of population?',['Kenya','Uganda','Tanzania','Ethiopia']
+    ,'Ethiopia'
+);
+const userAnswer = 'Ethiopia';
+const isCorrect = question.checkAnswers(userAnswer);
+console.log(isCorrect);
+
+
+
+
+
+
+
+/*2. Create a Quiz class with the following properties:
 ● questions(array):An array of Question objects.
 ● currentQuestionIndex(number): The index of the current question in the
 questions array.
@@ -96,3 +127,34 @@ currentQuestionIndex.
 ● submitAnswer: Takes a user's answer as a parameter, checks if the answer is
 correct using the checkAnswer method of the Question class, and updates the
 score if the answer is correct.*/
+class Quiz{
+    constructor(questions,currentQuestionIndex,score,addQuestion,nextQuestion,submitAnswer){
+        this.questions = []
+        this.currentQuestionIndex = 0
+        this.score = 0
+ 
+    }
+    addQuestion(question){
+        this.questions.push(question);
+     }
+     nextQuestion(){
+        this.currentQuestionIndex ++
+     }
+      submitAnswer(userAnswer){   
+        const currentQuestion = this.questions[this.currentQuestionIndex];
+        if (currentQuestion.checkAnswer(answer)) {
+          this.score++;
+        }
+      }
+}
+
+const quiz = new Quiz();
+// const question2 = new Question('Who is the first black President of USA?',
+// ['Barack Obama','Donald Trump','Martin Luther King'],'Barack Obama');
+// quiz.addQuestion(question2);
+
+
+// quiz.nextQuestion();
+// quiz.submitAnswer('Donald Trump');
+
+console.log(quiz.score); 
